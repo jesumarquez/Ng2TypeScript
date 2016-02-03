@@ -1,0 +1,25 @@
+<h2>Shopping List</h2>
+<style>
+    .not-purchased {
+        font-weight: bold;
+    }
+</style>
+<div *ngFor="#item of list"
+    [class.not-purchased]="!item.purchased"
+    (click)="toggleItem(item)">
+    &raquo;&nbsp;{{item.name}}
+</div>
+
+<!--Add new Item:
+<input #entered 
+    (keyup.enter)="addItem(entered.value);entered.value=''"/>-->
+    
+<form>
+    <label for="newItem">Add Item:</label>
+    <input name="newItem"           
+           #newItemCtrl="ngForm"
+           required
+           [(ngModel)]="newItem"/>
+    <button [disabled]="!newItemCtrl.valid"
+            (click)="addItem()">Add</button>
+</form>
